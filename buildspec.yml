@@ -2,21 +2,21 @@ version: 0.2
 phases: 
   install: 
     runtime-versions: 
-      python: 3.8 
+      python: 3.11 
   pre_build: 
     commands: 
       - echo logging in to AWS ECR...   
-      - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 581984844962.dkr.ecr.us-east-2.amazonaws.com  
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 781651636001.dkr.ecr.ap-south-1.amazonaws.com 
   build:   
     commands:   
       - echo build Docker image on `date`   
-      - docker build -t versionapi .   
-      - docker tag versionapi:latest 581984844962.dkr.ecr.us-east-2.amazonaws.com/versionapi:latest   
+      - docker build -t techhub-docker .   
+      - docker tag techhub-docker:latest 781651636001.dkr.ecr.ap-south-1.amazonaws.com/techhub-ecr-repo:latest   
   post_build:   
     commands:   
       - echo build Docker image complete `date`   
       - echo push latest Docker images to ECR...   
-      - docker push 581984844962.dkr.ecr.us-east-2.amazonaws.com/versionapi:latest
+      - docker push 781651636001.dkr.ecr.ap-south-1.amazonaws.com/techhub-ecr-repo:latest
       - printf '{"ImageURI":"image_URI"}' > imageDetail.json
       - pwd 
       - ls 
