@@ -17,7 +17,7 @@ phases:
       - echo build Docker image complete `date`   
       - echo push latest Docker images to ECR...   
       - docker push 781651636001.dkr.ecr.ap-south-1.amazonaws.com/techhub-ecr-repo:latest
-      - printf ${"ImageURI":"image_URI"} > imageDetail.json
+      - printf '{"ImageURI":"image_URI"}' > imageDetail.json
       - pwd 
       - ls 
 artifacts: 
