@@ -12,7 +12,7 @@ app = Flask(__name__)
 def home():
     if(request.method == 'GET'):
   
-        data = "hello world"
+        data = "hello world, come to the party"
         return jsonify({'data': data})
   
 # A simple function to calculate the square of a number
