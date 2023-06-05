@@ -3,7 +3,7 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: <TASK_DEFINITION>
+        TaskDefinition: arn:aws:ecs:ap-south-1:781651636001:task-definition/techhub-taskdefinition:1
         LoadBalancerInfo:
-          ContainerName: "volvo-task"
+          ContainerName: "techhub-docker"
           ContainerPort: 5000
