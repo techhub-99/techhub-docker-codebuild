@@ -6,22 +6,18 @@ phases:
   pre_build: 
     commands: 
       - echo logging in to AWS ECR...   
-      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 781651636001.dkr.ecr.ap-south-1.amazonaws.com
-      - REPOSITORY_URI=781651636001.dkr.ecr.ap-south-1.amazonaws.com/techhub-ecr-repo
-      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - IMAGE_TAG=${COMMIT_HASH:=latest}
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 781651636001.dkr.ecr.ap-south-1.amazonaws.com 
   build:   
     commands:   
       - echo build Docker image on `date`   
-      - docker build -t $REPOSITORY_URI:latest .   
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG  
+      - docker build -t techhub-docker .   
+      - docker tag techhub-docker:latest 781651636001.dkr.ecr.ap-south-1.amazonaws.com/techhub-ecr-repo:latest   
   post_build:   
     commands:   
       - echo build Docker image complete `date`   
       - echo push latest Docker images to ECR...   
-      - docker push $REPOSITORY_URI:latest
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - printf '{"ImageURI":"%s"}' $REPOSITORY_URI:$IMAGE_TAG > imageDetail.json
+      - docker push 781651636001.dkr.ecr.ap-south-1.amazonaws.com/techhub-ecr-repo:latest
+      - printf '{"ImageURI":"781651636001.dkr.ecr.ap-south-1.amazonaws.com/techhub-ecr-repo:latest"}' > imageDetail.json
       - pwd 
       - ls 
 artifacts: 
@@ -29,5 +25,4 @@ artifacts:
     - imageDetail.json
     - appspec.yml
     - techhhub-taskdef-1-revision1.json
-    - taskdef.json
     - '**/*'
