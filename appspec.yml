@@ -3,7 +3,7 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: arn:aws:ecs:ap-south-1:781651636001:task-definition/ecs-td:1
+        TaskDefinition: arn:aws:ecs:ap-south-1:781651636001:task-definition/techhhub-taskdef-1:1
         LoadBalancerInfo:
           ContainerName: "techhub-docker"
           ContainerPort: 5000
