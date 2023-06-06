@@ -3,7 +3,7 @@
     "containerDefinitions": [
         {
             "name": "techhub-docker",
-            "image": "781651636001.dkr.ecr.ap-south-1.amazonaws.com/techhub-ecr-repo",
+            "image": "781651636001.dkr.ecr.ap-south-1.amazonaws.com/techhub-ecr-repo:latest",
             "cpu": 0,
             "portMappings": [
                 {
